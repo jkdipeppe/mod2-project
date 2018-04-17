@@ -9,13 +9,17 @@
   </head>
 
   <body>
+    <div id="site-nav">
     <%= link_to "Sign In", sessions_new_path%>
 
     <%= link_to "Home", "/" %>
     <%= link_to "Shows", shows_path %>
     <%= link_to "Bands", bands_path %>
     <%= link_to "Venues", venues_path %>
+    <%= link_to "Sign Out", sessions_logout_path %>
+  </div>
     </br></br>
     <%= yield %>
+
   </body>
 </html>

@@ -2,6 +2,6 @@
 
 <%= form_tag sessions_create_path do %>
  Username: <%= text_field_tag :username %>
- Password: <%= text_field_tag :password %>
+ Password: <%= password_field_tag :password %>
  <%= submit_tag 'Sign In' %>
 <% end %>

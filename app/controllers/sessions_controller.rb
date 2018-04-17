@@ -20,11 +20,10 @@ class SessionsController < ApplicationController
     else
       render :new
     end
-
-
   end
 
-  def destroy
-
+  def logout
+    session[:user] = nil
+    redirect_to sessions_new_path
   end
 end
