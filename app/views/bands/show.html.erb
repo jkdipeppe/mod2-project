@@ -1,16 +1,26 @@
+<html>
+<body>
+<img src=<%=@band.picture%> width="100" height="100"></br>
 <h2><%= @band.name %></h2>
-
-Members: <%=@band.bandmates%></br>
+Members: <%=@band.bandmates.delete('\"')%></br>
 Number of Shows: <%=@band.shows.count%></br>
 Bio: <%=@band.bio%></br>
-Genre: <%=@band.genre%></br></br>
-Upcoming Shows:
+Genre: <%=@band.genre%></br>
+Preview:
+<embed width="420" height="315"
+src="https://youtu.be/671AgW9xSiA">
+</br></br>
+<h3>Upcoming Shows:</h3>
+<ul>
 <%@band.shows.each do |show|%>
-<li>Name: <%= show.name %></li>
+<li>Name: <%= link_to show.name, show_path(show.id) %></li>
 <li>Location: <%= show.venue.location %></li>
 <li>Date: <%= show.date.strftime("%B %d, %Y") %> at <%= show.date.strftime("%l%P")%></li>
 <li>Tickets Sold: <%= show.tickets.count %>
 <li>Show Revenue: $<%= show.ticket_sales %>.00
-
-
+</br></br>
 <% end %>
+</ul>
+
+</body>
+</html>

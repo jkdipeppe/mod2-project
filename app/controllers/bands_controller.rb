@@ -1,10 +1,12 @@
 class BandsController < ApplicationController
   before_action :set_band, only: [:show]
-  def show
+
+  def index
+    @bands = Band.all
   end
 
-
-
+  def show
+  end
 
   private
 

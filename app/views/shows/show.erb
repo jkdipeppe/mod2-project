@@ -1,1 +1,14 @@
-<%=@show.name%>
+<h2><%= @show.name %></br></h2>
+<%= link_to @show.band.name, band_path(@show.band.id) %></br>
+Tickets Sold: <%= @show.tickets.count %></br>
+<%= link_to @show.venue.name.capitalize, venue_path(@show.venue.id) %></br></br>
+<%= link_to "Buy Ticket", new_show_ticket_path(@show) %>
+</br></br>
+<div>
+  Guest List:</br>
+
+    <% @show.guests.each do |guest|%>
+    <img src=<%=guest.picture%> width="70" height="70">
+      <%= "Name: #{guest.name} Age: #{guest.age}"%>
+    <% end %>
+</div>

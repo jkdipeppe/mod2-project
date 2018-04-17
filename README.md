@@ -22,3 +22,15 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+* Methods List:
+  -Show def ticket_sales: total revenue from tickets sold for a particular show
+  -Show def profit
+  -Show def popularity: tickets sold for that show
+
+
+  -Band def earning
+  -Band def popularity: total tickets sold across all their shows
+  -Band def highest_grossing: earnings from tickets after venue cost
+
+  -Venue def popularity: tickets sold across all shows at venue

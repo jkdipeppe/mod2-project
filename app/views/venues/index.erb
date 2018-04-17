@@ -1,0 +1,11 @@
+</br>
+
+<h2>Venues</h2>
+<ul>
+<% @venues.each do |venue| %>
+  <%= link_to venue.name.capitalize, venue_path(venue.id) %>
+  <li>Upcoming Shows: <%= venue.shows.count %></li>
+  <li>Capacity: <%= venue.capacity %></li>
+  <li>Location: <%= venue.location %></li></br></br>
+<% end %>
+</ul>

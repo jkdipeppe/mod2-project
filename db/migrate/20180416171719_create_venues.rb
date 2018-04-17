@@ -6,6 +6,7 @@ class CreateVenues < ActiveRecord::Migration[5.1]
       t.integer :capacity
       t.integer :min_age
       t.integer :cost
+      t.string :picture
 
       t.timestamps
     end

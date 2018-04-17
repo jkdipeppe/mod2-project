@@ -167,25 +167,63 @@ age = [18,21]
 ticket_type = ["General Admission", "VIP"]
 
 n = 20
-m = 100
+m = 50
 
 m.times do
-  guest = Guest.create(name: Faker::Name.name, age: rand(15..50), location: Faker::Address.state, username: Faker::Name.first_name, password: Faker::Name.last_name)
+  guest = Guest.create(
+    picture: "#{Faker::Avatar.image}?set=set2",
+    name: Faker::Name.name,
+    age: rand(15..50),
+    location: Faker::Address.state,
+    username: Faker::Name.first_name,
+    password: Faker::Name.last_name
+  )
 end
-guest_pass = Guest.create(name: Faker::Name.name, age: rand(15..50), location: Faker::Address.state, username: 'username', password: 'password')
+guest_pass = Guest.create(
+  picture: "#{Faker::Avatar.image}?set=set2",
+  name: Faker::Name.name,
+  age: rand(15..50),
+  location: Faker::Address.state,
+  username: 'username',
+  password: 'password'
+)
 
 10.times do
-  band = Band.create(name: Faker::RockBand.name, genre: genres[rand(1..genres.length)], bio: Faker::HowIMetYourMother.quote, bandmates: [Faker::Name.name, Faker::Name.name, Faker::Name.name, Faker::Name.name].to_s.delete("[]"), username: Faker::Team.creature, password: Faker::Team.mascot)
+  band = Band.create(
+    picture: "#{Faker::Avatar.image}?set=set3",
+    name: Faker::RockBand.name,
+    genre: genres[rand(1..genres.length)],
+    bio: Faker::HowIMetYourMother.quote,
+    username: Faker::Team.creature,
+    password: Faker::Team.mascot,
+    bandmates: [Faker::Name.name, Faker::Name.name, Faker::Name.name, Faker::Name.name].to_s.delete("[]")
+  )
 end
+band_pass = Band.create(
+  picture: "#{Faker::Avatar.image}?set=set3",
+  name: Faker::RockBand.name,
+  genre: genres[rand(1..genres.length)],
+  bio: Faker::HowIMetYourMother.quote,
+  username: 'imaband',
+  password: 'imapassword',
+  bandmates: [Faker::Name.name, Faker::Name.name, Faker::Name.name, Faker::Name.name].to_s.delete("[]")
+)
+
 
 10.times do
   venue = Venue.create(name: Faker::Hipster.word, location: Faker::Address.state, capacity: rand(100..500), min_age: age[rand(0..1)], cost: rand(1..25)*100)
 end
 
 n.times do
-  show = Show.create(venue_id: rand(1..Venue.count), band_id: rand(1..Band.count), name: Faker::Science.element, date: (Faker::Time.between(DateTime.now, 1.year.from_now).to_datetime))
+  show = Show.create(
+    price: rand(1..10)*10,
+    venue_id: rand(1..Venue.count),
+    band_id: rand(1..Band.count),
+    name: Faker::Science.element + ' ' + Faker::Superhero.power,
+    date: (Faker::Time.between(DateTime.now, 1.year.from_now).to_datetime)
+  )
 end
 
-m.times do
-  ticket = Ticket.create(guest_id: rand(1..m), show_id: rand(1..n), ticket_type: ticket_type[rand(0..1)], price: rand(1..10)*10)
+1000.times do
+  ticket = Ticket.create(guest_id: rand(1..Guest.all.count), show_id: rand(1..n), ticket_type: ticket_type[rand(0..1)], price: rand(1..10)*10)
 end

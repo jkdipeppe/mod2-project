@@ -18,17 +18,19 @@ ActiveRecord::Schema.define(version: 20180416171719) do
     t.string "bandmates"
     t.string "bio"
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
+    t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "guests", force: :cascade do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.string "name"
     t.integer "age"
     t.string "location"
+    t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,6 +40,7 @@ ActiveRecord::Schema.define(version: 20180416171719) do
     t.integer "band_id"
     t.string "name"
     t.datetime "date"
+    t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -57,6 +60,7 @@ ActiveRecord::Schema.define(version: 20180416171719) do
     t.integer "capacity"
     t.integer "min_age"
     t.integer "cost"
+    t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -4,11 +4,6 @@ class GuestsController < ApplicationController
   def show
   end
 
-
-
-  def login
-  end
-
   private
 
   def set_guest

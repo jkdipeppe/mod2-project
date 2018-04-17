@@ -5,6 +5,7 @@ class CreateShows < ActiveRecord::Migration[5.1]
       t.integer :band_id
       t.string :name
       t.datetime :date
+      t.integer :price
 
       t.timestamps
     end

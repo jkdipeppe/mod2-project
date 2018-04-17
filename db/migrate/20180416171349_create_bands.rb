@@ -6,7 +6,8 @@ class CreateBands < ActiveRecord::Migration[5.1]
       t.string :bandmates
       t.string :bio
       t.string :username
-      t.string :password
+      t.string :password_digest
+      t.string :picture
 
       t.timestamps
     end
