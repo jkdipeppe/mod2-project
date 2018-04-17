@@ -1,0 +1,14 @@
+<h1>Venue: <%=@venue.name%></h1>
+Location: <%= @venue.location%></br>
+Capacity: <%= @venue.capacity%></br>
+Age Requirements: <%= @venue.min_age%> and up
+</br></br>
+Upcoming Shows:
+<ul>
+<%@venue.shows.each do |show|%>
+  <li><%= show.name %></li>
+  <li><%= show.date.strftime("%B %d, %Y") %> at <%= show.date.strftime("%l%P")%></li>
+  <li><%= show.band.name %></li>
+  <%= link_to 'Buy Tickets Link', show_path(show.id)%></br></br>
+<% end %>
+</ul>

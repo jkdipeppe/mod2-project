@@ -1,0 +1,16 @@
+<h2><%= @band.name %></h2>
+
+Members: <%=@band.bandmates%></br>
+Number of Shows: <%=@band.shows.count%></br>
+Bio: <%=@band.bio%></br>
+Genre: <%=@band.genre%></br></br>
+Upcoming Shows:
+<%@band.shows.each do |show|%>
+<li>Name: <%= show.name %></li>
+<li>Location: <%= show.venue.location %></li>
+<li>Date: <%= show.date.strftime("%B %d, %Y") %> at <%= show.date.strftime("%l%P")%></li>
+<li>Tickets Sold: <%= show.tickets.count %>
+<li>Show Revenue: $<%= show.ticket_sales %>.00
+
+
+<% end %>
