@@ -1,5 +1,7 @@
 class ShowsController < ApplicationController
   before_action :set_show, only: [:show]
+  before_action :require_band_login, only: [:new]
+
   def index
     @shows = Show.all
   end
@@ -23,15 +25,41 @@ class ShowsController < ApplicationController
 
 
   def new
-
+    @show = Show.new
   end
   def create
+    date = params[:show]["date(1i)"]+ "-" +
+      params[:show]["date(2i)"] + "-" +
+      params[:show]["date(3i)"] + " " +
+      params[:show]["date(4i)"] + ":" +
+      params[:show]["date(5i)"]
+
+    @show = Show.create(
+      name: params[:show][:name],
+      venue_id: params[:show][:venue_id],
+      price: params[:show][:price],
+      band_id: session[:user]["id"],
+      date: date.to_datetime
+    )
     
+    redirect_to show_path(@show)
   end
 
   private
 
   def set_show
     @show = Show.find(params[:id])
+  end
+
+  def show_params
+    params.require(:show).permit()
+  end
+
+  def require_band_login
+    if session[:user]["bandmates"]
+      true
+    else
+      redirect_to sessions_new_path
+    end
   end
 end

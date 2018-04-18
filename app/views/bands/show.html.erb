@@ -1,25 +1,29 @@
 <html>
-<body>
-<div id="show-band">
-<img src=<%=@band.picture%> width="100" height="100"></br>
-<h2><%= @band.name %></h2>
-Members: <%=@band.bandmates.delete('\"')%></br>
-Number of Shows: <%=@band.shows.count%></br>
-Bio: <%=@band.bio%></br>
-Genre: <%=@band.genre%></br>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/pafY6sZt0FE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</br></br>
-<h3>Upcoming Shows:</h3>
-<ul id="list">
-<%@band.shows.each do |show|%>
-<li>Name: <%= link_to show.name, show_path(show.id) %></li>
-<li>Location: <%= show.venue.location %></li>
-<li>Date: <%= show.date.strftime("%B %d, %Y") %> at <%= show.date.strftime("%l%P")%></li>
-<li>Tickets Sold: <%= show.tickets.count %>
-<li>Show Revenue: $<%= show.ticket_sales %>.00
-</br></br>
-<% end %>
-</ul>
-</div>
-</body>
+  <body>
+    <div id="show-band">
+    </br>
+      <%if session[:user]["bandmates"]%>
+        <%= link_to "Create Show", new_show_path %>
+      <% end %></br>
+      <img src=<%=@band.picture%> width="100" height="100"></br>
+      <h2><%= @band.name %></h2>
+      Members: <%=@band.bandmates.delete('\"')%></br>
+      <%=@band.shows.count%> Upcoming Shows</br>
+      Bio: <%=@band.bio%></br>
+      Genre: <%=@band.genre%></br>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/pafY6sZt0FE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </br></br>
+      <h3>Upcoming Shows:</h3>
+        <ul id="list">
+        <%@band.shows.each do |show|%>
+        <li>Name: <%= link_to show.name, show_path(show.id) %></li>
+        <li>Location: <%= show.venue.location %></li>
+        <li>Date: <%= show.date.strftime("%B %d, %Y") %> at <%= show.date.strftime("%l%P")%></li>
+        <li>Tickets Sold: <%= show.tickets.count %>
+        <li>Show Revenue: $<%= show.ticket_sales %>.00
+        </br></br>
+        <% end %>
+        </ul>
+    </div>
+  </body>
 </html>

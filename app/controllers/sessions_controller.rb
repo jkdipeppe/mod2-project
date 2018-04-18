@@ -26,4 +26,5 @@ class SessionsController < ApplicationController
     session[:user] = nil
     redirect_to sessions_new_path
   end
+
 end

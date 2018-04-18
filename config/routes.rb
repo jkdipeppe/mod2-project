@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/band/signin', to: 'bands#signin'
   post '/band/signin', to: 'bands#signin'
 
-  resources :shows, only: [:edit, :show, :index] do
+  resources :shows, only: [:edit, :show, :index, :new, :create] do
     resources  :tickets, only: [:new, :create]
   end
   get "/", to: "application#homepage", as: "/"

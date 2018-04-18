@@ -5,7 +5,13 @@ class ApplicationController < ActionController::Base
     @shows = Show.all
   end
 
-  def login
-    
-  end
+  # def self.band_logged_in?
+  #   if session
+  #     true
+  #   end
+  # end
+  #
+  # def self.guest_logged_in?
+  #   return true if session
+  # end
 end
