@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/guest/signin', to: 'guests#signin'
   post '/guest/signin', to: 'guests#signin'
 
-  resources :tickets, only: [:new, :create, :show]
+  resources :tickets, only: [:new, :create, :show, :destroy]
   resources :bands
   get '/band/signin', to: 'bands#signin'
   post '/band/signin', to: 'bands#signin'

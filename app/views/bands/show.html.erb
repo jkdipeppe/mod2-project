@@ -2,9 +2,7 @@
   <body>
     <div id="show-band">
     </br>
-      <%if session[:user]["bandmates"]%>
-        <%= link_to "Create Show", new_show_path %>
-      <% end %></br>
+      
       <img src=<%=@band.picture%> width="100" height="100"></br>
       <h2><%= @band.name %></h2>
       Members: <%=@band.bandmates.delete('\"')%></br>

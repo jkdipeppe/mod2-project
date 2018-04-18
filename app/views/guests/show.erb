@@ -9,7 +9,10 @@ Number Of Shows Attending: <%=@guest.shows.count%></br>
 <h3>Show Name: <%= show.name %></h3>
 <li>Show Location: <%= show.venue.location %></li>
 <li>Show Date: <%= show.date.strftime("%B %d, %Y") %> at <%= show.date.strftime("%l%P")%></li>
-<li><%= link_to "Sell Ticket"%></li></br>
-
+  <% if session[:user] != nil %>
+    <% if session[:user]["id"].to_i == @guest.id  && session[:user]["age"]%>
+      <li><%= link_to "Sell Ticket", ticket_path(Ticket.find_by(show_id: show.id, guest_id: @guest.id)), method: "delete"%></li></br>
+    <% end %>
+  <% end %>
 <% end %>
 </ul>

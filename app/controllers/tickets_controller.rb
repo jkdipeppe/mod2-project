@@ -1,4 +1,5 @@
 class TicketsController < ApplicationController
+  before_action :require_guest_login, only: [:new, :create, :delete]
 
   def new
     # binding.pry
@@ -17,15 +18,34 @@ class TicketsController < ApplicationController
       @ticket.ticket_type = 'General Admission'
     end
 
+    @ticket.guest_id = session[:user]["id"].to_i
     @ticket.show_id = params[:show][:show_id]
+    @ticket.save
 
-    # @ticket.save
-    # redirect_to guest_path()
-    binding.pry
-    #add guest_id
+    redirect_to guest_path(session[:user]["id"].to_i)
   end
 
-  def show
+  def destroy
+    @ticket = Ticket.find(params[:id])
+    @ticket.destroy
+    redirect_to guest_path(session[:user]["id"].to_i)
+  end
+
+  # def show
+  # end
+
+  private
+
+  def require_guest_login
+    if session[:user] != nil
+      if session[:user]["age"]
+        true
+      else
+        redirect_to sessions_new_path
+      end
+    else
+      redirect_to sessions_new_path
+    end
   end
 
 end

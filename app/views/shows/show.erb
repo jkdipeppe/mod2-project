@@ -9,6 +9,6 @@ Tickets Sold: <%= @show.tickets.count %></br>
 
     <% @show.guests.each do |guest|%>
     <img src=<%=guest.picture%> width="70" height="70">
-      <%= "Name: #{guest.name} Age: #{guest.age}"%>
+      <%= link_to "Name: #{guest.name} Age: #{guest.age}", guest_path(guest.id)%>
     <% end %>
 </div>

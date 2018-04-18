@@ -24,6 +24,12 @@
       <%= link_to session[:user]["name"], (session[:user]["bandmates"] ?
       band_path(session[:user]["id"]): guest_path(session[:user]["id"])) %>
     <% end %>
+    <% if session[:user] != nil %>
+      <%if session[:user]["bandmates"]%>
+        <%= link_to "Create Show", new_show_path %>
+      <% end %>
+    <% end %>
+  </br>
   </div>
 
     </br></br>

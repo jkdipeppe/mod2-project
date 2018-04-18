@@ -1,4 +1,5 @@
 <%= form_for @ticket do |f|%>
+</br>
   <%= @show.name %></br>
   Date: <%= @show.date.strftime("%B %d, %Y at %l%P") %></br>
   Venue: <%= @show.venue.name %></br>
@@ -7,5 +8,5 @@
   <%= f.select :ticket_type, ["VIP $#{(@show.price.to_f*1.5)}0", "General Admission $#{@show.price}.00"]%>
   <%= hidden_field_tag"show[show_id]", "#{@show.id}" %>
   <%= hidden_field_tag"show[price]", "#{@show.price}" %>
-  <%= f.submit %>
+  <%= f.submit "Buy Ticket"%>
 <% end %>
