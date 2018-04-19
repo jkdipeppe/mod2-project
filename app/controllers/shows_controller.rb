@@ -33,16 +33,19 @@ class ShowsController < ApplicationController
       params[:show]["date(3i)"] + " " +
       params[:show]["date(4i)"] + ":" +
       params[:show]["date(5i)"]
-
-    @show = Show.create(
+    @show = Show.new(
       name: params[:show][:name],
       venue_id: params[:show][:venue_id],
       price: params[:show][:price],
       band_id: session[:user]["id"],
       date: date.to_datetime
     )
-
-    redirect_to show_path(@show)
+    if @show.valid?
+      @show.save
+      redirect_to show_path(@show)
+    else
+      render :new
+    end
   end
 
   def destroy

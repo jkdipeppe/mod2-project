@@ -6,7 +6,7 @@ class Band < ApplicationRecord
   validates :genre, presence: true
   validates :bandmates, presence: true
   validates :bio, presence: true
-  validates :image, presence: true
+  validates :picture, presence: true
   validates :username, presence: true
   validates :password_digest, presence: true
 
