@@ -1,17 +1,19 @@
 
 
 <h2>Shows</h2>
-<ul>
-<% @shows.each do |show| %>
-  <%= link_to show.name.capitalize, show_path(show.id) %>
-  <li>Band: <%= show.band.name %></li>
-  <li>Venue: <%= show.venue.name %></li>
-  <li>Tickets Sold: <%= show.tickets.count %></li>
-  <% if session[:user] != nil%>
-    <% if session[:user]["id"].to_i == show.band_id && session[:user]["bandmates"]%>
-      <%= link_to "Cancel/Delete This Show", show_path(show.id), method: "delete" %>
-    <% end %>
+
+<div class="ui four column relaxed grid">
+  <% @shows.each do |show| %>
+    <div class="column">
+      <%= link_to show.name.capitalize, show_path(show.id) %>
+      <li>Band: <%= show.band.name %></li>
+      <li>Venue: <%= show.venue.name %></li>
+      <li>Tickets Sold: <%= show.tickets.count %></li>
+      <% if session[:user] != nil%>
+        <% if session[:user]["id"].to_i == show.band_id && session[:user]["bandmates"]%>
+          <%= link_to "Cancel/Delete This Show", show_path(show.id), method: "delete" %>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
-</br></br>
-<% end %>
-</ul>
+</div>

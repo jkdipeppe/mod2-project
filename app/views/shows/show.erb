@@ -6,9 +6,45 @@ Tickets Sold: <%= @show.tickets.count %></br>
 </br></br>
 <div>
   Guest List:</br>
-
+  <div class="ui five column relaxed grid" id="show_username">
     <% @show.guests.each do |guest|%>
-    <img src=<%=guest.picture%> width="70" height="70">
-      <%= link_to "Name: #{guest.name} Age: #{guest.age}", guest_path(guest.id)%>
+    <div class="column">
+
+
+
+
+
+
+
+        <div class="ui card">
+          <div class="image">
+            <img src="<%=guest.picture%>">
+          </div>
+          <div class="content">
+            <%=link_to guest.username, guest_path(guest.id), class: "header"%>
+            <div class="meta">
+              <span class="date"><a href= <%="https://www.google.com/maps/place/#{guest.location.split(" ").join("")}"%>><%=guest.location%></a></span>
+            </div>
+            <div class="description">
+              <%="Age: #{guest.age}" %>
+            </div>
+          </div>
+          <div class="extra content">
+            <a>
+              <i class="user icon"></i>
+              <%= "#{guest.shows.count} upcoming shows" %>
+            </a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+    </div>
     <% end %>
+  </div>
 </div>
