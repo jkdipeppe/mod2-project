@@ -1,10 +1,10 @@
 <%= form_for @show do |f| %>
   </br>
-  Band: <%= session[:user]["name"]%></br>
-  Show Name: <%= f.text_field :name %></br>
-  Venue: <%= f.collection_select(:venue_id, Venue.all, :id, :name)%></br>
-  Ticket Price: <%= f.text_field :price %></br>
-  Date: <%= f.datetime_select :date, start_year: 2018 %>
+  Band: <%= session[:user]["name"]%></br></br>
+  Show Name: <%= f.text_field :name %></br></br>
+  Venue: <%= f.collection_select(:venue_id, Venue.all, :id, :name)%></br></br>
+  Ticket Price: <%= f.text_field :price %></br></br>
+  Date: <%= f.datetime_select :date, start_year: 2018 %></br>
   </br>
   <%= f.submit%>
 <% end %>

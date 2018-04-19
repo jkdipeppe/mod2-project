@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Mod2project</title>
     <%= csrf_meta_tags %>
@@ -9,7 +10,37 @@
   </head>
 
   <body>
-    <div id="site-nav">
+    <div class="ui secondary  menu">
+          <%= link_to "Home", "/", class: "item" %>
+
+          <%= link_to "Shows", shows_path, class: "item" %>
+
+
+          <%= link_to "Bands", bands_path, class: "item" %>
+
+
+          <%= link_to "Venues", venues_path, class: "item" %>
+
+          <div class="right menu">
+            <div class="item">
+              <div class="ui icon input">
+                <input type="text" placeholder="Search...">
+                <i class="search link icon"></i>
+              </div>
+            </div>
+              <% if session[:user] != nil %>
+                <%if session[:user]["bandmates"]%>
+                  <%= link_to "Create Show", new_show_path, class: "ui item" %>
+                <% end %>
+              <% end %>
+              <% if session[:user] %>
+                <%= link_to "Sign Out", sessions_logout_path, class: "ui item" %></br>
+              <% else %>
+                <%= link_to "Sign In", sessions_new_path, class: "ui item" %></br>
+              <% end %>
+          </div>
+</div>
+    <!-- <div id="site-nav">
 
     <%= link_to "Sign In", sessions_new_path%>
 
@@ -30,7 +61,7 @@
       <% end %>
     <% end %>
   </br>
-  </div>
+  </div> -->
 
     </br></br>
     <%= yield %>

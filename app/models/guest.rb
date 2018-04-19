@@ -3,4 +3,6 @@ class Guest < ApplicationRecord
   has_many :shows, through: :tickets
   has_secure_password
 
+
+  
 end
