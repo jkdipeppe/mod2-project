@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
       session[:user] = @guest
       redirect_to guest_path(@guest)
     else
+      @not_valid = true
       render :new
     end
   end

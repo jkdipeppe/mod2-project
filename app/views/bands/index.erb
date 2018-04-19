@@ -2,11 +2,11 @@
 
 <h2>Bands</h2>
 <ul>
-<% @bands.each do |band| %>
-<img src=<%=band.picture%> width="100" height="100"></br>
-  <%= link_to band.name.capitalize, band_path(band.id) %>
-  <li>Upcoming Shows: <%= band.shows.count %></li>
-  <li>Name: <%= band.name %></li>
-  <li>Members: <%= band.bandmates %></li></br></br>
-<% end %>
+  <% @bands.each do |band| %>
+    <img src=<%=band.picture%> width="100" height="100"></br>
+    <%= link_to band.name.capitalize, band_path(band.id) %>
+    <li>Upcoming Shows: <%= band.shows.count %></li>
+    <li>Name: <%= band.name %></li>
+    <li>Members: <%= band.bandmates.delete("\"") %></li></br></br>
+  <% end %>
 </ul>

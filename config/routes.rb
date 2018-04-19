@@ -3,17 +3,19 @@ Rails.application.routes.draw do
   post 'sessions/create'
   get '/sessions/logout'
 
-  resources :venues
-  resources :guests
+  resources :venues, only: [:index, :show]
+  resources :guests, only: [:new, :create, :show, :destroy]
+  get '/guests/:id/analytics', to: 'guests#analytics', as: 'guests_analytics'
   get '/guest/signin', to: 'guests#signin'
   post '/guest/signin', to: 'guests#signin'
 
   resources :tickets, only: [:new, :create, :show, :destroy]
-  resources :bands
+  resources :bands, only: [:new, :create, :show, :index]
+  get '/bands/:id/analytics', to: 'bands#analytics', as: 'bands_analytics'
   get '/band/signin', to: 'bands#signin'
   post '/band/signin', to: 'bands#signin'
 
-  resources :shows, only: [:edit, :show, :index, :new, :create] do
+  resources :shows, only: [:edit, :show, :index, :new, :create, :destroy] do
     resources  :tickets, only: [:new, :create]
   end
   get "/", to: "application#homepage", as: "/"
