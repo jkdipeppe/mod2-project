@@ -2,7 +2,10 @@
   <body>
     <div id="show-band">
     </br>
-      
+    <%if @signed_in %>
+      <%= "You're Signed In As #{session[:user]["name"]}. You must sign out to create a new account!" %>
+    <% end %>
+
       <img src=<%=@band.picture%> width="100" height="100"></br>
       <h2><%= @band.name %></h2>
       Members: <%=@band.bandmates.delete('\"')%></br>
@@ -18,10 +21,24 @@
         <li>Location: <%= show.venue.location %></li>
         <li>Date: <%= show.date.strftime("%B %d, %Y") %> at <%= show.date.strftime("%l%P")%></li>
         <li>Tickets Sold: <%= show.tickets.count %>
-        <li>Show Revenue: $<%= show.ticket_sales %>.00
+        <li>Show Revenue: $<%= show.ticket_sales %>.00</br>
+          <% if session[:user] != nil%>
+            <% if session[:user]["id"].to_i == show.band_id && session[:user]["bandmates"]%>
+              <%= link_to "Cancel This Show", show_path(show.id), method: "delete" %>
+            <% end %>
+          <% end %>
         </br></br>
         <% end %>
         </ul>
     </div>
+
+    <% if session[:user] != nil %>
+      <% if session[:user]["username"] == @band.username %>
+        <%= link_to "My Stats",bands_analytics_path(@band) %>
+      <% end %>
+    <% end %>
+
+
+
   </body>
 </html>

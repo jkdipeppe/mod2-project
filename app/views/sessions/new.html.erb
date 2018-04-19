@@ -1,7 +1,16 @@
 <h1>Sign In Page</h1>
+<div class="valid">
+<% if @not_valid %>
+  <%= "That is not a valid login" %></br>
+<% end %>
+</div>
 
 <%= form_tag sessions_create_path do %>
  Username: <%= text_field_tag :username %>
  Password: <%= password_field_tag :password %>
  <%= submit_tag 'Sign In' %>
 <% end %>
+Create a new Account: </br>
+
+<%= link_to "Band", new_band_path%>
+<%= link_to "Fan", new_guest_path%>

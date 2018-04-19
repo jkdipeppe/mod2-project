@@ -7,6 +7,11 @@
   <li>Band: <%= show.band.name %></li>
   <li>Venue: <%= show.venue.name %></li>
   <li>Tickets Sold: <%= show.tickets.count %></li>
+  <% if session[:user] != nil%>
+    <% if session[:user]["id"].to_i == show.band_id && session[:user]["bandmates"]%>
+      <%= link_to "Cancel/Delete This Show", show_path(show.id), method: "delete" %>
+    <% end %>
+  <% end %>
 </br></br>
 <% end %>
 </ul>

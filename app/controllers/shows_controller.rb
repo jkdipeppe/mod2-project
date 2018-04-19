@@ -1,6 +1,6 @@
 class ShowsController < ApplicationController
   before_action :set_show, only: [:show]
-  before_action :require_band_login, only: [:new]
+  before_action :require_band_login, only: [:new, :destroy]
 
   def index
     @shows = Show.all
@@ -9,19 +9,19 @@ class ShowsController < ApplicationController
   def show
   end
 
-  def gaticket
-    @test = 1
-    binding.pry
-    # Ticket.create(show_id: @show.id, guest_id: #need guest session data, price: @show.price, type: 'General Admission')
-    # redirect_to guests_path(#need guestID )
-  end
-
-  def vipticket
-    @test1 = 2
-    binding.pry
-    # Ticket.create(show_id: @show.id, guest_id: #need guest session data, price: @show.price*1.5, type: 'VIP')
-    # redirect_to guests_path(#need guestID )
-  end
+  # def gaticket
+  #   @test = 1
+  #   binding.pry
+  #   # Ticket.create(show_id: @show.id, guest_id: #need guest session data, price: @show.price, type: 'General Admission')
+  #   # redirect_to guests_path(#need guestID )
+  # end
+  #
+  # def vipticket
+  #   @test1 = 2
+  #   binding.pry
+  #   # Ticket.create(show_id: @show.id, guest_id: #need guest session data, price: @show.price*1.5, type: 'VIP')
+  #   # redirect_to guests_path(#need guestID )
+  # end
 
 
   def new
@@ -41,9 +41,19 @@ class ShowsController < ApplicationController
       band_id: session[:user]["id"],
       date: date.to_datetime
     )
-    
+
     redirect_to show_path(@show)
   end
+
+  def destroy
+    @show = Show.find(params[:id])
+    @show.destroy
+    redirect_to band_path(session[:user]["id"].to_i)
+  end
+
+
+
+
 
   private
 
