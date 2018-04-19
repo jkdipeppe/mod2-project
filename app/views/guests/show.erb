@@ -16,3 +16,9 @@ Number Of Shows Attending: <%=@guest.shows.count%></br>
   <% end %>
 <% end %>
 </ul>
+
+<% if session[:user] != nil %>
+  <% if session[:user]["username"] == @guest.username %>
+    <%= link_to "My Stats", guests_analytics_path(@guest) %>
+  <% end %>
+<% end %>
