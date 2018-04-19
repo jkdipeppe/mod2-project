@@ -164,7 +164,7 @@ genres = [
 
 age = [18,21]
 
-ticket_type = ["General Admission", "VIP"]
+ticket_type = ["General Admission", "VIP", "General Admission"]
 
 n = 20
 m = 50
@@ -225,5 +225,5 @@ n.times do
 end
 
 1000.times do
-  ticket = Ticket.create(guest_id: rand(1..Guest.all.count), show_id: rand(1..n), ticket_type: ticket_type[rand(0..1)], price: rand(1..10)*10)
+  ticket = Ticket.create(guest_id: rand(1..Guest.all.count), show_id: rand(1..n), ticket_type: ticket_type[rand(0..2)], price: rand(1..10)*10)
 end

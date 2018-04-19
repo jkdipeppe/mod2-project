@@ -24,13 +24,37 @@ class Band < ApplicationRecord
 
   def tickets_sold
     num = self.shows.map {|show| show.tickets.count}.reduce(:+)
-    if num = nil
+    if num == nil
       0
     end
-end
+  end
+
+  def average_age
+    # count = 0
+    # total_age = 0
+    # self.shows.each do |show|
+    #   show.guests.each do |guest|
+    #     total_age += guest.age
+    #     count += 1
+    #   end
+    # end
+    # total_age/count
+
+    shows.map{|show| show.guests.map{|guest| guest.age}.reduce(:+)/show.guests.count}.reduce(:+)/shows.count
+  end
 
   def self.popular(n)
     Band.all.sort_by {|band| band.tickets_sold}[0..n]
+  end
+
+  def vip_ga_ratio
+    # ga = shows.all.map{|show| show.tickets.select{|t| t.ticket_type == "General Admission"}.count}.reduce(:+)
+    # vip = shows.all.map{|show| show.tickets.select{|t| t.ticket_type == "VIP"}.count}.reduce(:+)
+    # [[ga, "GA"], [vip, "VIP"]]
+  end
+
+  def shows_by_profit
+
   end
 
   def self.highest_grossing
