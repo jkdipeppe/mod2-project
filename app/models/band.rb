@@ -47,4 +47,12 @@ end
     name
   end
 
+
+  def tour_route
+    shows.sort_by{|show| show.date}.map{|s| s.venue.location}
+  end
+
+  def tour_schedule
+    shows.sort_by{|show| show.date}.map{|s| "#{s.venue.location}"}
+  end
 end

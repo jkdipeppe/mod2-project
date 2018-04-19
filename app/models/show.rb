@@ -10,4 +10,12 @@ class Show < ApplicationRecord
   def ticket_sales
     self.tickets.map{|ticket| ticket.price}.reduce(:+)
   end
+
+  def profit
+    ticket_sales - venue.cost
+  end
+
+  def popularity
+    tickets.count
+  end
 end
