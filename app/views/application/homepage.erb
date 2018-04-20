@@ -1,13 +1,13 @@
 <html>
   <body>
-      
-    <div id="home-page">
-      <h1>Welcome to Tickets R Us</h1>
 
+    <%= image_tag ("ticketSpicket.png"), id:"logo_pic"%>
+    <div id="home-page">
+      <h1>Welcome to Ticket Spicket</h1>
       <% @shows.each do |show|%>
       <h3>Show: <%= show.name%></h3>
       Date: <%= show.date.strftime("%B %d, %Y")%> at <%= show.date.strftime("%l%P")%></br>
-      Venue:<%= link_to show.venue.name, venue_path(show.venue.id)%></br>
+      Venue: <%= link_to show.venue.name, venue_path(show.venue.id)%></br>
       Band Name: <%= link_to show.band.name, band_path(show.band.id)%></br></br>
       ------------------------------
       <%end%>

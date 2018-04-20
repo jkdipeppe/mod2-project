@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   end
 
   def search
+    # binding.pry
     band_name = Band.find_by(name: params[:name]).name
     @shows = Show.all.select{|show| show.band.name == band_name}
     render :homepage
