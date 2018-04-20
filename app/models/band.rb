@@ -65,7 +65,7 @@ class Band < ApplicationRecord
 
 
   def tour_route
-    shows.sort_by{|show| show.date}.map{|s| s.venue.location}
+    url = "https://www.google.com/maps/dir/#{shows.sort_by{|show| show.date}.map{|s| s.venue.location.split(" ").join("+")}.join("/")}"
   end
 
   def tour_schedule

@@ -21,5 +21,7 @@ Rails.application.routes.draw do
   get '/shows/:id/analytics', to: 'shows#analytics', as: 'shows_analytics'
 
   get "/", to: "application#homepage", as: "/"
+
+  get "/search", to: "application#search", as: "/search"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

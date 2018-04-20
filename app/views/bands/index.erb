@@ -1,12 +1,28 @@
 </br>
+<div>
 
-<h2>Bands</h2>
-<ul>
-  <% @bands.each do |band| %>
-    <img src=<%=band.picture%> width="100" height="100"></br>
-    <%= link_to band.name.capitalize, band_path(band.id) %>
-    <li>Upcoming Shows: <%= band.shows.count %></li>
-    <li>Name: <%= band.name %></li>
-    <li>Members: <%= band.bandmates.delete("\"") %></li></br></br>
-  <% end %>
-</ul>
+<h1 id="bands_index_title">Bands</h1>
+
+
+<div class="ui two column centered grid">
+  <!-- <div class="column">hello</div> -->
+  <div class="four column centered row">
+    <% @bands.each do |band| %>
+    <div class="column">
+
+      <img src=<%=band.picture%> width="100" height="100"></br>
+      <%= link_to band.name.capitalize, band_path(band.id) %>
+      <li>Upcoming Shows: <%= band.shows.count %></li>
+      <li>Name: <%= band.name %></li>
+      <li>Members: <%= band.bandmates.delete("\"") %></li></br></br>
+
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+</div>

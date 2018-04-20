@@ -2,9 +2,14 @@
 <h3 class="ui header" id="h3_header">
 <%= link_to @show.band.name, band_path(@show.band.id) %></br>
 Tickets Sold: <%= @show.tickets.count %></br>
-<%= link_to "Show Stats", shows_analytics_path(@show)%>
-<%= link_to @show.venue.name.capitalize, venue_path(@show.venue.id) %></br>
-<%= link_to "Buy Ticket", new_show_ticket_path(@show) %></br></br></br>
+Venue: <%= link_to @show.venue.name.capitalize, venue_path(@show.venue.id) %></br>
+
+<% if @show.tickets.count >= @show.venue.capacity %>
+  This show is sold out!</br>
+<% else %>
+  <%= link_to "Buy Ticket", new_show_ticket_path(@show) %></br></br></br>
+<% end %>
+
 Guest List:
 </h3>
 

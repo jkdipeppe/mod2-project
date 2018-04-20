@@ -3,14 +3,15 @@ General Stats:
 Average Age of fans: <%= @band.average_age %></br>
 VIP to General Admission Ticket Ratio: <%= @band.vip_ga_ratio %></br>
 Total Profits: $<%= @band.earnings %></br>
-Total Upcoming Shows: <%= @band.shows.count %>
+Total Upcoming Shows: <%= @band.shows.count %></br>
 
 
 <div class="ui four cards">
+
   <% @band.shows.each do |show| %>
     <a class="red card">
       <div class="image">
-        show.name
+        Show name: <%=show.name%>
       </div>
     </a>
   <% end %>

@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
     @shows = Show.all
   end
 
+  def search
+    band_name = Band.find_by(name: params[:name]).name
+    @shows = Show.all.select{|show| show.band.name == band_name}
+    render :homepage
+  end
+
   # def self.band_logged_in?
   #   if session
   #     true

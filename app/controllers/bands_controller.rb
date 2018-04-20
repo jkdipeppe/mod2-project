@@ -16,6 +16,7 @@ class BandsController < ApplicationController
 
 
   def new
+    session[:user] = nil
     @band = Band.new
   end
 

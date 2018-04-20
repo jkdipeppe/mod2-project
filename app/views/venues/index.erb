@@ -1,11 +1,19 @@
 </br>
+<div id="venue_index">
+<h2 id="venue_index_header">Venues</h2>
 
-<h2>Venues</h2>
-<ul>
-<% @venues.each do |venue| %>
-  <%= link_to venue.name.capitalize, venue_path(venue.id) %>
-  <li>Upcoming Shows: <%= venue.shows.count %></li>
-  <li>Capacity: <%= venue.capacity %></li>
-  <li>Location: <%= venue.location %></li></br></br>
-<% end %>
-</ul>
+<div class="ui grid">
+  <div class="doubling six column row">
+
+    <% @venues.each do |venue| %>
+    <div class="column">
+      <%= link_to venue.name.capitalize, venue_path(venue.id) %>
+      <li>Upcoming Shows: <%= venue.shows.count %></li>
+      <li>Capacity: <%= venue.capacity %></li>
+      <li>Location: <%= venue.location %></li></br></br>
+    </div>
+
+    <% end %>
+  </div>
+</div>
+</div>

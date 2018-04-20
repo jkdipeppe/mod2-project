@@ -24,7 +24,8 @@
           <div class="right menu">
             <div class="item">
               <div class="ui icon input">
-                <input type="text" placeholder="Search band or show...">
+                <input type="text" name="name" placeholder="Search band name..." action="/search" method="get">
+
                 <i class="search link icon"></i>
               </div>
             </div>
@@ -77,9 +78,9 @@
           <h4 class="ui inverted header">About</h4>
           <div class="ui inverted link list">
             <a href="#" class="item"><%= link_to "Home", "/", class: "item" %></a>
-            <a href="#" class="item">Bands</a>
-            <a href="#" class="item">Religious Ceremonies</a>
-            <a href="#" class="item">Gazebo Plans</a>
+            <%= link_to "Bands", bands_path, class:"item"%>
+            <%= link_to "Shows", shows_path, class:"item"%>
+            <%= link_to "Venues", venues_path, class:"item"%>
           </div>
         </div>
         <div class="three wide column">
