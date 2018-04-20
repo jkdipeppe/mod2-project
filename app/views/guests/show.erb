@@ -4,21 +4,62 @@ Age: <%= @guest.age %></br>
 Location: <%= @guest.location %></br>
 Number Of Shows Attending: <%=@guest.shows.count%></br>
 
-<ul>
-<%@guest.shows.each do |show|%>
-<h3>Show Name: <%= show.name %></h3>
-<li>Show Location: <%= show.venue.location %></li>
-<li>Show Date: <%= show.date.strftime("%B %d, %Y") %> at <%= show.date.strftime("%l%P")%></li>
-  <% if session[:user] != nil %>
-    <% if session[:user]["id"].to_i == @guest.id  && session[:user]["age"]%>
-      <li><%= link_to "Sell Ticket", ticket_path(Ticket.find_by(show_id: show.id, guest_id: @guest.id)), method: "delete"%></li></br>
-    <% end %>
-  <% end %>
-<% end %>
-</ul>
-
 <% if session[:user] != nil %>
   <% if session[:user]["username"] == @guest.username %>
     <%= link_to "My Stats", guests_analytics_path(@guest) %>
   <% end %>
 <% end %>
+
+<div class="ui grid" id="show_grid">
+  <% @guest.shows.each do |show| %>
+  <div class="four wide column">
+
+    <div class="ui card"  id="show_box">
+     <div class="content">
+       <div class="header">Show Name: <%= show.name %></div>
+     </div>
+     <div class="content">
+       <h4 class="ui sub header">Show Info</h4>
+       <div class="ui small feed">
+         <div class="event">
+           <div class="content">
+             <div class="summary">
+                Show Date: <%= show.date.strftime("%B %d, %Y") %> at <%= show.date.strftime("%l%P")%>
+             </div>
+           </div>
+         </div>
+         <div class="event">
+           <div class="content">
+             <div class="summary">
+                Show Location: <%= show.venue.location %>
+             </div>
+           </div>
+         </div>
+         <div class="event">
+           <div class="content">
+             <div class="summary">
+                <!-- can add more content here -->
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+     <div class="extra content" id="show_buttons">
+       <button class="ui button" id="show_button">
+         <% if session[:user] != nil %>
+           <% if session[:user]["id"].to_i == @guest.id  && session[:user]["age"]%>
+             <%= link_to "Sell Ticket", ticket_path(Ticket.find_by(show_id: show.id, guest_id: @guest.id)), method: "delete"%></br>
+           <% else %>
+            <p><%= link_to "Log in to buy and sell tickets!", sessions_new_path %></p>
+           <% end %>
+        <% end %>
+      </button>
+      <p></p>
+      <button class="ui button" id="show_button">
+        <%= link_to "View Show", show_path(show.id)%>
+      </button>
+     </div>
+    </div>
+  </div>
+  <% end %>
+</div>

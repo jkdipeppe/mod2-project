@@ -12,7 +12,11 @@ class Show < ApplicationRecord
   end
 
   def profit
-    ticket_sales - venue.cost
+    if ticket_sales
+      ticket_sales - venue.cost
+    else
+      "-#{venue.cost}"
+    end
   end
 
   def popularity

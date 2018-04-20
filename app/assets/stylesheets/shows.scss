@@ -1,6 +1,28 @@
 // Place all the styles related to the Shows controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#h2_header{
+  text-align: center;
+}
+#h3_header{
+  text-align: center;
+}
+
 #show_username {
   text-align: center;
+  padding: 20px;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+#show_grid{
+  padding: 10px;
+}
+
+#show_box{
+  background-color: lightgray;
+}
+
+#show_button {
+  background-color: gray;
+
 }

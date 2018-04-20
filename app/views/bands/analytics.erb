@@ -1,0 +1,17 @@
+<h1>Band Analytics!</h1>
+General Stats:
+Average Age of fans: <%= @band.average_age %></br>
+VIP to General Admission Ticket Ratio: <%= @band.vip_ga_ratio %></br>
+Total Profits: $<%= @band.earnings %></br>
+Total Upcoming Shows: <%= @band.shows.count %>
+
+
+<div class="ui four cards">
+  <% @band.shows.each do |show| %>
+    <a class="red card">
+      <div class="image">
+        show.name
+      </div>
+    </a>
+  <% end %>
+</div>

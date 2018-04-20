@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   resources :shows, only: [:edit, :show, :index, :new, :create, :destroy] do
     resources  :tickets, only: [:new, :create]
   end
+  get '/shows/:id/analytics', to: 'shows#analytics', as: 'shows_analytics'
+
   get "/", to: "application#homepage", as: "/"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -20,3 +20,6 @@
 //= require_self
 //= require_tree .
 //= require turbolinks
+$('.special.cards .image').dimmer({
+  on: 'hover'
+});

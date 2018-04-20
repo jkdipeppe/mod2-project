@@ -1,5 +1,5 @@
 class ShowsController < ApplicationController
-  before_action :set_show, only: [:show]
+  before_action :set_show, only: [:show, :analytics]
   before_action :require_band_login, only: [:new, :destroy]
 
   def index
@@ -9,6 +9,8 @@ class ShowsController < ApplicationController
   def show
   end
 
+  def analytics
+  end
   # def gaticket
   #   @test = 1
   #   binding.pry

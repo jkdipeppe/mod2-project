@@ -30,17 +30,8 @@ class Band < ApplicationRecord
   end
 
   def average_age
-    # count = 0
-    # total_age = 0
-    # self.shows.each do |show|
-    #   show.guests.each do |guest|
-    #     total_age += guest.age
-    #     count += 1
-    #   end
-    # end
-    # total_age/count
-
-    shows.map{|show| show.guests.map{|guest| guest.age}.reduce(:+)/show.guests.count}.reduce(:+)/shows.count
+    s = shows.select{|show| show.guests.count > 0}
+    s.map{|show| show.guests.map{|guest| guest.age}.reduce(:+)/show.guests.count}.reduce(:+)/s.count
   end
 
   def self.popular(n)
@@ -48,9 +39,10 @@ class Band < ApplicationRecord
   end
 
   def vip_ga_ratio
-    # ga = shows.all.map{|show| show.tickets.select{|t| t.ticket_type == "General Admission"}.count}.reduce(:+)
-    # vip = shows.all.map{|show| show.tickets.select{|t| t.ticket_type == "VIP"}.count}.reduce(:+)
+    ga = shows.all.map{|show| show.tickets.select{|t| t.ticket_type == "General Admission"}.count}.reduce(:+)
+    vip = shows.all.map{|show| show.tickets.select{|t| t.ticket_type == "VIP"}.count}.reduce(:+)
     # [[ga, "GA"], [vip, "VIP"]]
+    (vip/ga).to_f
   end
 
   def shows_by_profit

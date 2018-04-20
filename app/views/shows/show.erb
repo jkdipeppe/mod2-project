@@ -1,41 +1,49 @@
-<h2><%= @show.name %></br></h2>
+<h1 id="h2_header"><%= @show.name %></br></h1>
+<h3 class="ui header" id="h3_header">
 <%= link_to @show.band.name, band_path(@show.band.id) %></br>
 Tickets Sold: <%= @show.tickets.count %></br>
-<%= link_to @show.venue.name.capitalize, venue_path(@show.venue.id) %></br></br>
-<%= link_to "Buy Ticket", new_show_ticket_path(@show) %>
-</br></br>
+<%= link_to "Show Stats", shows_analytics_path(@show)%>
+<%= link_to @show.venue.name.capitalize, venue_path(@show.venue.id) %></br>
+<%= link_to "Buy Ticket", new_show_ticket_path(@show) %></br></br></br>
+Guest List:
+</h3>
+
 <div>
-  Guest List:</br>
+  </br>
   <div class="ui five column relaxed grid" id="show_username">
     <% @show.guests.each do |guest|%>
     <div class="column">
 
 
 
-
-
-
-
-        <div class="ui card">
-          <div class="image">
+      <div class="ui special cards">
+        <div class="card">
+          <div class="blurring dimmable image">
+            <div class="ui dimmer">
+              <div class="content">
+                <div class="center">
+                  <div class="ui inverted button">View Profile</div>
+                </div>
+              </div>
+            </div>
             <img src="<%=guest.picture%>">
           </div>
           <div class="content">
             <%=link_to guest.username, guest_path(guest.id), class: "header"%>
             <div class="meta">
-              <span class="date"><a href= <%="https://www.google.com/maps/place/#{guest.location.split(" ").join("")}"%>><%=guest.location%></a></span>
-            </div>
-            <div class="description">
+              <span class="date"><a href= <%="https://www.google.com/maps/place/#{guest.location.split(" ").join("")}"%>><%=guest.location%></a></span></br>
               <%="Age: #{guest.age}" %>
             </div>
           </div>
+
           <div class="extra content">
             <a>
-              <i class="user icon"></i>
-              <%= "#{guest.shows.count} upcoming shows" %>
-            </a>
+              <i class="users icon"></i>
+              <%= "#{guest.shows.count} upcoming shows" %></a>
           </div>
         </div>
+      </div>
+
 
 
 
